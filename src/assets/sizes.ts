@@ -1,0 +1,1 @@
+export const icon_default_size :string = "30px";

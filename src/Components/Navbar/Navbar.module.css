@@ -1,0 +1,44 @@
+.nav_main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 0;
+    right: 0;
+}
+
+.search_container{
+    display: flex;    
+    justify-content: space-between;
+}
+
+.profile_container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.notification_icon{
+    margin: 0px 0.8rem;
+}
+
+.search_bar div{
+   border-radius: 25px;
+   width: 45vw;
+   padding-right: 0;
+}
+
+.search_icon_container{
+    width: 5rem;
+    border: none;
+    border-left: 1px solid lightgrey;
+    text-align: center;
+    background-color: #F8F8F8;
+    overflow: hidden;
+    border-radius: 0 25px 25px 0;
+
+}
+
+.youtube_logo_style{
+    width: 8rem;
+    height: 29px;
+}
