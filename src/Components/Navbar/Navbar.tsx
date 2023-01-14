@@ -5,36 +5,24 @@ import {
   Avatar,
   IconButton,
   Tooltip,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Button,
-  Drawer,
 } from "@mui/material";
 import styles from "./Navbar.module.css";
 import { BsMicFill } from "react-icons/bs";
-import { SlCamrecorder } from "react-icons/sl";
+import { RiVideoAddLine } from "react-icons/ri";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { icon_default_size } from "../../assets/sizes";
 import { youtube_logo } from "../../assets/assets";
-import { IoReorderThreeOutline } from "react-icons/io5";
+import RightDrawer from "../Drawer/Drawer";
 
 
 function Navbar() {
   return (
     <Box className={styles.navbar_parent}>
-
-
-    
-
       <Box className={styles.nav_main}>
         <Box className={styles.youtube_logo_container}> 
           <Box className={styles.opener_icon_container}>
-          <IoReorderThreeOutline fontSize={icon_default_size} />
+          <RightDrawer/>
           </Box>
           <Box>
           <img className={styles.youtube_logo_style} src={youtube_logo} />
@@ -73,7 +61,7 @@ function Navbar() {
           <Box>
             <ToolTipCustom title={"Create"}>
               <IconButton>
-                <SlCamrecorder fontSize={icon_default_size} />
+                <RiVideoAddLine fontSize={icon_default_size} />
               </IconButton>
             </ToolTipCustom>
           </Box>
@@ -105,89 +93,6 @@ const ToolTipCustom = ({ children, title }: any) => {
   );
 };
 
-function TemporaryDrawer() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
 
-  type Anchor = "top" | "left" | "bottom" | "right";
-
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
-      ) {
-        return;
-      }
-
-      setState({ ...state, [anchor]: open });
-    };
-
-  const list = (anchor: Anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <IoMdNotificationsOutline />
-                ) : (
-                  <IoMdNotificationsOutline />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <IoMdNotificationsOutline />
-                ) : (
-                  <IoMdNotificationsOutline />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
-  return (
-    <div>
-      {(["left", "right", "top", "bottom"] as const).map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
-  );
-}
 
 export default Navbar;

@@ -1,7 +1,6 @@
-import {useEffect} from "react";
 import { Box } from '@mui/material'
 import Navbar from './Components/Navbar/Navbar'
-import { Routes, Route, useLocation} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import Home from './Router/Home';
 import SearchScreen from "./Router/SearchScreen";
 import Sidebar from "./Components/Sidebar/Sidebar";

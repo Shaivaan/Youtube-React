@@ -45,6 +45,7 @@
 
 .youtube_logo_container{
     display: flex;
+    align-items: center;
 }
 
 .opener_icon_container{

@@ -1,0 +1,15 @@
+.drawer_main{
+     width: 13rem;
+     padding: 0px 10px;
+}
+
+.drawer_menu{
+     display: flex;
+     align-items: center;
+}
+
+.youtube_logo_style{
+    width: 5rem;
+    height: 20px;
+}
+
