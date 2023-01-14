@@ -19,38 +19,17 @@ import { BsMicFill } from "react-icons/bs";
 import { SlCamrecorder } from "react-icons/sl";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
-import { drwaer_opener_text, icon_default_size } from "../../assets/sizes";
+import { icon_default_size } from "../../assets/sizes";
 import { youtube_logo } from "../../assets/assets";
 import { IoReorderThreeOutline } from "react-icons/io5";
-import { AiFillHome, AiOutlinePlayCircle } from "react-icons/ai";
-import { MdOutlineSubscriptions, MdOutlineVideoLibrary } from "react-icons/md";
+
 
 function Navbar() {
   return (
     <Box className={styles.navbar_parent}>
 
 
-      {/* <Box className={styles.drawer_opener}>
-        <Box className={styles.drawer_opener_options}>
-          <IoReorderThreeOutline fontSize={icon_default_size} />
-        </Box>
-        <Box className={styles.drawer_opener_options}>
-          <AiFillHome fontSize={icon_default_size} />
-          <Box fontSize={drwaer_opener_text}>Home</Box>
-        </Box>
-        <Box className={styles.drawer_opener_options}>
-          <AiOutlinePlayCircle fontSize={icon_default_size} />
-          <Box fontSize={drwaer_opener_text}>Shorts</Box>
-        </Box>
-        <Box className={styles.drawer_opener_options}>
-          <MdOutlineSubscriptions fontSize={icon_default_size} />
-          <Box fontSize={drwaer_opener_text}>Subscription</Box>
-        </Box>
-        <Box className={styles.drawer_opener_options}>
-          <MdOutlineVideoLibrary fontSize={icon_default_size} />
-          <Box fontSize={drwaer_opener_text}>Library</Box>
-        </Box>
-      </Box> */}
+    
 
       <Box className={styles.nav_main}>
         <Box className={styles.youtube_logo_container}> 

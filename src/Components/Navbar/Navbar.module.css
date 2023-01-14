@@ -6,21 +6,6 @@
     margin-top: 0;
 }
 
-.drawer_opener{
-    flex: 1;
-    position: sticky;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.drawer_opener_options{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .search_container{
     display: flex;    
     justify-content: space-between;

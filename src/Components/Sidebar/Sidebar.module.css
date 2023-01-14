@@ -1,0 +1,15 @@
+.drawer_opener{
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 70px;
+
+}
+
+.drawer_opener_options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
