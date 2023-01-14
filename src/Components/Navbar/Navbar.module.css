@@ -1,9 +1,24 @@
+
 .nav_main{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    left: 0;
-    right: 0;
+    margin-top: 0;
+}
+
+.drawer_opener{
+    flex: 1;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.drawer_opener_options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .search_container{
@@ -41,4 +56,13 @@
 .youtube_logo_style{
     width: 8rem;
     height: 29px;
+}
+
+.youtube_logo_container{
+    display: flex;
+}
+
+.opener_icon_container{
+    width: 70px;
+    text-align: center;
 }
