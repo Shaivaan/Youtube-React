@@ -1,9 +1,10 @@
 import { Box } from '@mui/material'
 import Navbar from './Components/Navbar/Navbar'
 import { Routes, Route} from 'react-router-dom';
-import Home from './Router/Home';
+import Home from './Router/Home/Home';
 import SearchScreen from "./Router/SearchScreen";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import styles from "./App.module.css";
 
 function App() {
 
@@ -21,12 +22,14 @@ function App() {
    <Box>
       {is_navbar_visible() && <Navbar/>}
     <Box>
+       <Box className={styles.content_container}>
     {is_sidebar_visible}
      <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path="/search" element={<SearchScreen/>}/>
         <Route path="*" element={"Will se later"}/>
      </Routes>
+       </Box>
      </Box>
    </Box>
   )
