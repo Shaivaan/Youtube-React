@@ -14,11 +14,12 @@ import { CiSearch } from "react-icons/ci";
 import { icon_default_size } from "../../assets/sizes";
 import { youtube_logo } from "../../assets/assets";
 import RightDrawer from "../Drawer/Drawer";
+const navbar_background_color = "white";
 
 
 function Navbar() {
   return (
-    <Box className={styles.navbar_parent}>
+    <Box className={styles.navbar_parent} bgcolor={navbar_background_color}>
       <Box className={styles.nav_main}>
         <Box className={styles.youtube_logo_container}> 
           <Box className={styles.opener_icon_container}>

@@ -2,10 +2,13 @@
     height: 15rem;
     display: flex;
     flex-direction: column;
+    
 }
 
 .card_style:hover{
     cursor: pointer;
+    scale: 1.05;
+    transition: all .5s;
 }
 
 .thumb_nail{

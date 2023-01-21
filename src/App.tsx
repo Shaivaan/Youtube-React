@@ -5,13 +5,14 @@ import Home from './Router/Home/Home';
 import SearchScreen from "./Router/SearchScreen";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import styles from "./App.module.css";
+import PlayVideo from './Router/PlayVideo/PlayVideo';
 
 function App() {
 
   const end_point = window.location.pathname;
   const is_sidebar_visible =  end_point == "/" || end_point == "/search" ? <Sidebar/> : "" ;
   const is_navbar_visible = ()=>{
-    const end_point_arr = ["/","/search"];
+    const end_point_arr = ["/","/search","/watch"];
     if(end_point_arr.includes(end_point)){
       return true;
     }
@@ -27,6 +28,7 @@ function App() {
      <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path="/search" element={<SearchScreen/>}/>
+        <Route path="/watch" element={<PlayVideo/>}/>
         <Route path="*" element={"Will se later"}/>
      </Routes>
        </Box>
