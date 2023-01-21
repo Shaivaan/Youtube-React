@@ -1,20 +1,24 @@
-import React from 'react'
+import React from 'react';
 import { Box, Avatar } from '@mui/material';
 import style from "./Card.module.css";
 import moment from 'moment';
 import numeral from "numeral";
+import { useNavigate } from 'react-router-dom';
 
 function Card({card_data}:any) {
 
+    const navigate = useNavigate();
     const {title,channelTitle,publishedAt} = card_data.snippet;
     const thumbnail = card_data.snippet.thumbnails.standard.url;    
     const {viewCount} = card_data.statistics;
+    const {id} = card_data;
     const view_abbreviation_count  = numeral(+viewCount).format('0a').toLocaleUpperCase(); 
-
-    
+    const handleRedirect =()=>{
+          navigate(`/watch?v=${id}`);
+    }
 
   return (
-    <Box className={style.card_style}>
+    <Box className={style.card_style} onClick={handleRedirect}>
         <Box >
             <img className={style.thumb_nail} src = {thumbnail}/>
         </Box>

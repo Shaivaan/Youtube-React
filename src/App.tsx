@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import Navbar from './Components/Navbar/Navbar'
-import { Routes, Route} from 'react-router-dom';
+import {useEffect, useState} from "react";
+import { Routes, Route, useLocation} from 'react-router-dom';
 import Home from './Router/Home/Home';
 import SearchScreen from "./Router/SearchScreen";
 import Sidebar from "./Components/Sidebar/Sidebar";
@@ -8,8 +9,8 @@ import styles from "./App.module.css";
 import PlayVideo from './Router/PlayVideo/PlayVideo';
 
 function App() {
-
-  const end_point = window.location.pathname;
+  const location = useLocation();
+  const [end_point, set_current_point] = useState(location.pathname);
   const is_sidebar_visible =  end_point == "/" || end_point == "/search" ? <Sidebar/> : "" ;
   const is_navbar_visible = ()=>{
     const end_point_arr = ["/","/search","/watch"];
@@ -18,6 +19,10 @@ function App() {
     }
     return false;
   }
+
+  useEffect(()=>{
+    set_current_point(location.pathname);
+  },[location]);
 
   return (
    <Box>

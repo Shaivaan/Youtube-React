@@ -1,20 +1,78 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./PlayVideo.module.css";
-import { Avatar, Box, Button, makeStyles, Theme, withStyles } from "@mui/material";
+import { Avatar, Box, Button } from "@mui/material";
 import { AiOutlineLike } from "react-icons/ai";
 import { BiDislike } from "react-icons/bi";
 import { RiShareForwardLine } from "react-icons/ri";
 import { BsThreeDots } from "react-icons/bs";
 import { sidebar_icon_size } from "../../assets/sizes";
 import SideCard from "../../Components/Card/SideCard";
-
+import { useLocation, useNavigate } from "react-router-dom";
+import moment from "moment";
+import numeral from "numeral";
 
 function PlayVideo() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [video_data, set_video_data] = useState<any>();
+  const [channel_data, set_channel_data] = useState<any>();
   const [isShowMore, setShowMore] = useState(false);
   const seeMoreToggler = () => {
     setShowMore(!isShowMore);
   };
+  const params = new URLSearchParams(location.search);
+  const id = params.get("v");
+  const api_key = import.meta.env.VITE_API_KEY;
+  const video_detail_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${api_key}`;
 
+  useEffect(() => {
+    isIdValid(id);
+  }, []);
+
+  const isIdValid = (id: any) => {
+    if (!id) {
+      navigate("/");
+    } else {
+      getVideoData();
+    }
+  };
+
+  const getVideoData = () => {
+    fetch(video_detail_url)
+      .then((res) => {
+        res
+          .json()
+          .then((res) => {
+            set_video_data(res.items[0]);
+            getChannelData(res.items[0].snippet.channelId);
+          })
+          .catch((res) => {
+            console.log(res);
+          });
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
+
+  const getChannelData = (channel_id: any) => {
+    const channel_details_url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channel_id}&key=${api_key}`;
+
+    fetch(channel_details_url)
+      .then((res) => {
+        res
+          .json()
+          .then((res) => {
+            set_channel_data(res.items[0]);
+          })
+          .catch((res) => {
+            console.log(res);
+          });
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+  };
 
   return (
     <Box className={style.play_video_parent}>
@@ -22,24 +80,30 @@ function PlayVideo() {
         <Box>
           <iframe
             className={style.video_iframe}
-            src="https://www.youtube.com/embed/pq9U3gURqw8"
-            title="Marcos Edit | Excuses x Marine Commando | Marcos status #edit #india #marcos #parasfcommando #trend"
+            src={`https://www.youtube.com/embed/${id}`}
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
         </Box>
-        <Box className={style.video_title}>
-          Is Time Travel Possible? | @Round2hell | Netflix India
-        </Box>
+        <Box className={style.video_title}>{video_data?.snippet?.title}</Box>
         <Box className={style.channel_about_container}>
           <Box className={style.channel_detail_container}>
             <Box>
-              <Avatar className={style.channel_logo} src={""} />
+              <Avatar
+                className={style.channel_logo}
+                src={channel_data?.snippet?.thumbnails?.high?.url}
+              />
             </Box>
             <Box className={style.name_and_subscriber}>
-              <Box>Channel Title</Box>
-              <Box className={style.subscriber_video_card}> Subscriber</Box>
+              <Box>{video_data?.snippet?.channelTitle}</Box>
+              <Box className={style.subscriber_video_card}>
+                {" "}
+                {numeral(+channel_data?.statistics?.subscriberCount)
+                  .format("0a")
+                  .toLocaleUpperCase()}{" "}
+                subscribers
+              </Box>
             </Box>
             <Box>
               <button className={style.subscribe_button}>Subscribe</button>
@@ -47,7 +111,10 @@ function PlayVideo() {
           </Box>
           <Box className={style.like_and_dislike_section}>
             <Box className={style.rounded_background}>
-              <AiOutlineLike fontSize={sidebar_icon_size} /> 11K
+              <AiOutlineLike fontSize={sidebar_icon_size} />
+              {numeral(+video_data?.statistics?.likeCount)
+                .format("0a")
+                .toLocaleUpperCase()}
             </Box>
             <Box className={style.rounded_background}>
               <BiDislike fontSize={sidebar_icon_size} />
@@ -62,6 +129,20 @@ function PlayVideo() {
         </Box>
 
         <Box className={style.toggler_parent}>
+          <Box className={style.views_and_sub}>
+            <Box component={"span"}>
+              {numeral(+video_data?.statistics?.viewCount)
+                .format("0a")
+                .toLocaleUpperCase()}{" "}
+              views
+            </Box>
+            <Box component={"span"}>{" "}</Box>
+            <Box component={"span"}>
+              {moment(video_data?.snippet.publishedAt).fromNow() == "a day ago"
+                ? "1 day ago"
+                : moment(video_data?.snippet.publishedAt).fromNow()}
+            </Box>
+          </Box>
           <Box
             className={
               isShowMore
@@ -69,23 +150,18 @@ function PlayVideo() {
                 : style.description_box_more
             }
           >
-            Coding invader's Batch :- https://bit.ly/3GBwv1V Use Code "DHRUV20"
-            for 20% fee discount in job guarantee batch Only for first 250
-            candidates in this Republic day occasion Today, the phrase "Akhand
-            Bharat" is used as a political tool, but have you ever wondered what
-            may have happened if India and Pakistan had never been divided in
-            1947? Where would the nation be in terms of development ? In this
-            video, Dhruv Rathee discusses the partition, how it could have been
-            avoided, and whether or not stopping the separation would have
-            significantly changed the current state of the affected nations.
+            {video_data?.snippet?.description}
           </Box>
           <Box component={"span"}>
             <Button
-              style={{color:"black",textDecoration: "none", textTransform: "none" }}
-             
+              style={{
+                color: "black",
+                textDecoration: "none",
+                textTransform: "none",
+              }}
               onClick={seeMoreToggler}
             >
-              see more
+              {isShowMore ? "see more" : "see less"}
             </Button>
           </Box>
         </Box>
@@ -99,7 +175,4 @@ function PlayVideo() {
   );
 }
 
-
-
-  
 export default PlayVideo;
