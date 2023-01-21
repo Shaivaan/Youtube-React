@@ -2,13 +2,13 @@
     display: flex;
     border-radius: 5px;
     overflow: hidden;
-    height: 6.7rem;
+    height: 6.4rem;
 }
 
 .thumbnail{
     height: 100%;
     width: 10rem;
-    border-radius: 5px;   
+    border-radius: 5px;
 }
 
 .sidecard_right{
@@ -16,6 +16,7 @@
     flex-direction: column;
     padding: 8px;
     overflow: hidden;
+    width: 60%;
 }
 
 .channe_name{

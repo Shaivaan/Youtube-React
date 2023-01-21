@@ -1,23 +1,32 @@
 import React from 'react';
 import style from "./Sidecard.module.css";
+import moment from 'moment';
+import numeral from "numeral";
 import { Box } from '@mui/material';
 
-function SideCard() {
+
+function SideCard({card_data}:any) {
      const greyFontSize = "12px";
+     const {title,channelTitle,publishedAt} = card_data.snippet;
+     const thumbnail = card_data.snippet.thumbnails.standard.url;    
+     const {viewCount} = card_data.statistics;
+     const view_abbreviation_count  = numeral(+viewCount).format('0a').toLocaleUpperCase(); 
+    
+
   return (
     <Box className={style.main_sidecard}>
-         <Box className={style.thumbnail} component={"img"} src = {"https://i.ytimg.com/vi/kZJISbK3bu0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDzUWkrxmoi2845xZuCSg0dH_VzuA"}>
+         <Box className={style.thumbnail} component={"img"} src = {thumbnail}>
            
          </Box>
          <Box className={style.sidecard_right}>
-            <Box className={style.title}>Taaraks Mehta ka ooltahs chasma ooltahs chasma ooltahs chasma</Box>
-            <Box fontSize={greyFontSize} className={style.channe_name}>Channel Name</Box>
+            <Box className={style.title}>{title}</Box>
+            <Box fontSize={greyFontSize} className={style.channe_name}>{channelTitle}</Box>
             <Box fontSize={greyFontSize} className={style.views_and_published}>
-                <Box>15M views</Box>
+                <Box>{view_abbreviation_count} views</Box>
                 <Box className={style.dot_parent}>
                     <Box className={style.dot}></Box>
                 </Box>
-                <Box>3 days ago</Box>
+                <Box>{moment(publishedAt).fromNow() == "a day ago" ? "1 day ago" : moment(publishedAt).fromNow()}</Box>
                 </Box>
         </Box>   
     </Box>

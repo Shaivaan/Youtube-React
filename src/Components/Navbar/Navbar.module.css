@@ -49,6 +49,10 @@
     height: 29px;
 }
 
+.youtube_logo_style:hover{
+    cursor: pointer;
+}
+
 .youtube_logo_container{
     display: flex;
     align-items: center;

@@ -16,7 +16,9 @@ function PlayVideo() {
   const navigate = useNavigate();
   const [video_data, set_video_data] = useState<any>();
   const [channel_data, set_channel_data] = useState<any>();
-  const [isShowMore, setShowMore] = useState(false);
+  const [side_videos,set_side_videos] = useState<any>([]);
+  const [isShowMore, setShowMore] = useState(true);
+  const number_of_videos = 50;
   const seeMoreToggler = () => {
     setShowMore(!isShowMore);
   };
@@ -24,6 +26,8 @@ function PlayVideo() {
   const id = params.get("v");
   const api_key = import.meta.env.VITE_API_KEY;
   const video_detail_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${api_key}`;
+  const youtube_api = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=${api_key}&maxResults=${number_of_videos}`;
+
 
   useEffect(() => {
     isIdValid(id);
@@ -34,6 +38,7 @@ function PlayVideo() {
       navigate("/");
     } else {
       getVideoData();
+      get_trending_videos();
     }
   };
 
@@ -73,6 +78,22 @@ function PlayVideo() {
         console.log(res);
       });
   };
+
+  const get_trending_videos=()=>{
+    fetch(youtube_api)
+    .then((res)=>{
+        res.json().then((res)=>{
+          set_side_videos(res.items);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+}
+
 
   return (
     <Box className={style.play_video_parent}>
@@ -167,8 +188,8 @@ function PlayVideo() {
         </Box>
       </Box>
       <Box className={style.video_list_container}>
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((el) => {
-          return <SideCard />;
+        {side_videos.length !=0 && side_videos.map((el:any)=>{
+          return <SideCard card_data={el}/>
         })}
       </Box>
     </Box>

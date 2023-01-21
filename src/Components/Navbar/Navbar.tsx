@@ -14,10 +14,17 @@ import { CiSearch } from "react-icons/ci";
 import { icon_default_size } from "../../assets/sizes";
 import { youtube_logo } from "../../assets/assets";
 import RightDrawer from "../Drawer/Drawer";
+import { useNavigate } from "react-router-dom";
 const navbar_background_color = "white";
 
-
 function Navbar() {
+
+  const navigate = useNavigate();
+
+  const homeRedirector=()=>{
+    navigate("/")
+  }
+    
   return (
     <Box className={styles.navbar_parent} bgcolor={navbar_background_color}>
       <Box className={styles.nav_main}>
@@ -25,8 +32,8 @@ function Navbar() {
           <Box className={styles.opener_icon_container}>
           <RightDrawer/>
           </Box>
-          <Box>
-          <img className={styles.youtube_logo_style} src={youtube_logo} />
+          <Box onClick={homeRedirector}>
+          <img  className={styles.youtube_logo_style} src={youtube_logo} />
           </Box>
         </Box>
         <Box className={styles.search_container}>
