@@ -1,0 +1,19 @@
+.loading_avatar_style{
+    display: flex;
+    justify-content: space-between;
+}
+
+.snack_parent{
+    display: flex;
+    align-items: center;
+}
+
+
+.snack_lines{
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    flex: 1;
+    margin-left: 0.5rem;
+}
