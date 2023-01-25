@@ -39,7 +39,6 @@ export const Home = () => {
             res
               .json()
               .then((res) => {
-                console.log(res);
                 set_avatar_data((prev: any) => [...prev, res.items[0]]);
               })
               .catch((res) => {
@@ -61,9 +60,10 @@ export const Home = () => {
     <>
       <Box className={styles.home_container}>
         {videos_data.length != 0
-          ? videos_data.map((el: any) => {
+          ? videos_data.map((el: any,index:number) => {
               return (
                 <Card
+                 key={index}
                   card_data={el}
                   channel_data={
                     avatar_data.filter(
@@ -73,8 +73,8 @@ export const Home = () => {
                 />
               );
             })
-          : myArray.map((el: number) => {
-              return <LoadingSkeleton />;
+          : myArray.map((el: number,index:number) => {
+              return <LoadingSkeleton key={index}/>;
             })}
       </Box>
     </>

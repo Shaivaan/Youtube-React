@@ -7,6 +7,7 @@ import SearchScreen from "./Router/SearchScreen";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import styles from "./App.module.css";
 import PlayVideo from './Router/PlayVideo/PlayVideo';
+import RandomScreen from './Router/RandomScreen/RandomScreen';
 
 function App() {
   const location = useLocation();
@@ -34,7 +35,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path="/search" element={<SearchScreen/>}/>
         <Route path="/watch" element={<PlayVideo/>}/>
-        <Route path="*" element={"Will se later"}/>
+        <Route path="*" element={<RandomScreen/>}/>
      </Routes>
        </Box>
      </Box>

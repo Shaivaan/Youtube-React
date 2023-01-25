@@ -2,7 +2,7 @@
 .navbar_parent{
     top: 0;
     position: sticky;
-    
+    z-index: 2;
 }
 
 .nav_main{

@@ -1,4 +1,3 @@
-import React from 'react';
 import style from "./Sidecard.module.css";
 import moment from 'moment';
 import numeral from "numeral";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./PlayVideo.module.css";
 import { Avatar, Box, Button } from "@mui/material";
 import { AiOutlineLike } from "react-icons/ai";
@@ -31,7 +31,7 @@ function PlayVideo() {
 
   useEffect(() => {
     isIdValid(id);
-  }, []);
+  }, [id]);
 
   const isIdValid = (id: any) => {
     if (!id) {
@@ -188,8 +188,8 @@ function PlayVideo() {
         </Box>
       </Box>
       <Box className={style.video_list_container}>
-        {side_videos.length !=0 && side_videos.map((el:any)=>{
-          return <SideCard card_data={el}/>
+        {side_videos.length !=0 && side_videos.map((el:any,index:number)=>{
+          return <SideCard key = {index} card_data={el}/>
         })}
       </Box>
     </Box>
