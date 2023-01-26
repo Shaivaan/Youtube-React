@@ -20,7 +20,7 @@ YouTube is an American online video sharing and social media platform owned by G
 <h2>Images</h2>
 
 <h3>Home Page</h3>
-<img src = "https://user-images.githubusercontent.com/93570605/170944498-56402034-3161-44b1-a10a-33d826fd8433.png"/>
+<img src = "https://user-images.githubusercontent.com/93570605/214910257-6c7deb8b-45d2-4bd9-80e0-b29a9093c4b6.png"/>
 
 <h3>Video</h3>
-<img src = "https://user-images.githubusercontent.com/93570605/170945522-15e4a80a-3ee8-4f46-ae05-4dcebf6628db.png"/>
+<img src = "https://user-images.githubusercontent.com/93570605/214910412-2fc7490e-f58b-48bd-90ca-3995fafa846f.png"/>
