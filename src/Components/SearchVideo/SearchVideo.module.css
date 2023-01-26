@@ -1,0 +1,67 @@
+.search_card_parent{
+    display: flex;  
+    height: 13rem;
+    overflow: hidden;
+}
+.search_card_parent:hover{
+    cursor: pointer;
+    scale: 1.05;
+    transition: 0.5s all;
+}
+
+.search_image_thumbnail{
+    height: 100%;
+    width: 19rem;
+    border-radius: 10px;
+}
+
+.search_content_container{
+    margin-left: 20px;
+}
+
+.title_search{
+    font-weight: bold;
+    margin: 0.3rem; 
+}
+
+.views_and_published{
+    display: flex;
+    margin-top: 0.2rem;
+}
+
+.dot_parent{
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.dot{
+    background-color: grey;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    margin: 0px 5px;
+}
+
+.channel_about{
+    display: flex;
+    align-items: center;
+    margin: 1rem 0rem;
+}
+
+.description{
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: normal;
+     display: -webkit-box;
+     -webkit-line-clamp: 1;
+     -webkit-box-orient: vertical;
+}
+
+.avatar_style{
+    margin-right: 0.5rem;
+}
+
+.greyText{
+    color: grey;
+}

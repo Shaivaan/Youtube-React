@@ -1,0 +1,7 @@
+.search_page_parent{
+    width: 90%;
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}

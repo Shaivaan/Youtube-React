@@ -1,10 +1,5 @@
-import {
-  Box,
-  TextField,
-  Avatar,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
+import { Box, TextField, Avatar, IconButton, Tooltip } from "@mui/material";
+import { useState } from "react";
 import styles from "./Navbar.module.css";
 import { BsMicFill } from "react-icons/bs";
 import { RiVideoAddLine } from "react-icons/ri";
@@ -17,27 +12,36 @@ import { useNavigate } from "react-router-dom";
 const navbar_background_color = "white";
 
 function Navbar() {
-
   const navigate = useNavigate();
+  const [search_text, set_search_text] = useState("");
+  const handleChange = (e: any) => {
+    set_search_text(e.target.value);
+  };
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    search_text.trim().length != 0 &&
+      navigate(`/search?search_query=${search_text}`);
+  };
+  const homeRedirector = () => {
+    navigate("/");
+  };
 
-  const homeRedirector=()=>{
-    navigate("/")
-  }
-    
   return (
     <Box className={styles.navbar_parent} bgcolor={navbar_background_color}>
       <Box className={styles.nav_main}>
-        <Box className={styles.youtube_logo_container}> 
+        <Box className={styles.youtube_logo_container}>
           <Box className={styles.opener_icon_container}>
-          <RightDrawer/>
+            <RightDrawer />
           </Box>
           <Box onClick={homeRedirector}>
-          <img  className={styles.youtube_logo_style} src={youtube_logo} />
+            <img className={styles.youtube_logo_style} src={youtube_logo} />
           </Box>
         </Box>
         <Box className={styles.search_container}>
-          <Box>
+          <Box component={"form"} onSubmit={handleSubmit}>
             <TextField
+              value={search_text}
+              onChange={handleChange}
               className={styles.search_bar}
               autoComplete={"off"}
               InputProps={{
@@ -46,7 +50,7 @@ function Navbar() {
                     className={styles.search_icon_container}
                     component={"span"}
                   >
-                    <IconButton>
+                    <IconButton type={"submit"}>
                       <CiSearch fontSize={icon_default_size} />
                     </IconButton>
                   </Box>
@@ -99,7 +103,5 @@ const ToolTipCustom = ({ children, title }: any) => {
     </Tooltip>
   );
 };
-
-
 
 export default Navbar;

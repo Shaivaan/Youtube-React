@@ -3,11 +3,11 @@ import Navbar from './Components/Navbar/Navbar'
 import {useEffect, useState} from "react";
 import { Routes, Route, useLocation} from 'react-router-dom';
 import Home from './Router/Home/Home';
-import SearchScreen from "./Router/SearchScreen";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import styles from "./App.module.css";
 import PlayVideo from './Router/PlayVideo/PlayVideo';
 import RandomScreen from './Router/RandomScreen/RandomScreen';
+import Search from './Search/Search';
 
 function App() {
   const location = useLocation();
@@ -33,7 +33,7 @@ function App() {
     {is_sidebar_visible}
      <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path="/search" element={<SearchScreen/>}/>
+        <Route path="/search" element={<Search/>}/>
         <Route path="/watch" element={<PlayVideo/>}/>
         <Route path="*" element={<RandomScreen/>}/>
      </Routes>

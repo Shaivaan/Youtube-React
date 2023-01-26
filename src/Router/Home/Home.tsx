@@ -59,8 +59,8 @@ export const Home = () => {
   return (
     <>
       <Box className={styles.home_container}>
-        {videos_data.length != 0
-          ? videos_data.map((el: any,index:number) => {
+        {videos_data?.length != 0
+          ? videos_data?.map((el: any,index:number) => {
               return (
                 <Card
                  key={index}
