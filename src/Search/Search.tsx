@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import styles from "./Search.module.css";
 import SearchVideo from '../Components/SearchVideo/SearchVideo';
 
-const api_key = import.meta.env.VITE_API_KEY;
+const api_key = import.meta.env.VITE_API_KEY || "AIzaSyBNqHrjGMvelDRpe7sa9Vm2nSFifXNFjj8";
 const search_vide_url =(keyword:string) => `https://youtube.googleapis.com/youtube/v3/search?&q=${keyword}&key=${api_key}&type=video&maxResults=25&part=snippet`;
 const channel_data_api = (channel_id: any) =>
   `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channel_id}&key=${api_key}`;

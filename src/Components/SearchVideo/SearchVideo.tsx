@@ -6,7 +6,7 @@ import moment from "moment";
 function SearchVideo({ card_data, channel_data }: any) {
   const navigate = useNavigate();
   const { title, channelTitle, publishedAt } = card_data.snippet;
-  const thumbnail = card_data.snippet.thumbnails.high.url;
+  const thumbnail = card_data.snippet.thumbnails.high?.url;
   const { videoId } = card_data.id;
   const handleRedirect = () => {
     navigate(`/watch?v=${videoId}`);

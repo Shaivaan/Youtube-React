@@ -24,7 +24,7 @@ function PlayVideo() {
   };
   const params = new URLSearchParams(location.search);
   const id = params.get("v");
-  const api_key = import.meta.env.VITE_API_KEY;
+  const api_key = import.meta.env.VITE_API_KEY || "AIzaSyBNqHrjGMvelDRpe7sa9Vm2nSFifXNFjj8";
   const video_detail_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${api_key}`;
   const youtube_api = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=${api_key}&maxResults=${number_of_videos}`;
 
@@ -188,7 +188,7 @@ function PlayVideo() {
         </Box>
       </Box>
       <Box className={style.video_list_container}>
-        {side_videos.length !=0 && side_videos.map((el:any,index:number)=>{
+        {side_videos?.length !=0 && side_videos?.map((el:any,index:number)=>{
           return <SideCard key = {index} card_data={el}/>
         })}
       </Box>

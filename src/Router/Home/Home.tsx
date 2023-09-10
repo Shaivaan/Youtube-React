@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import Card from "../../Components/Card/Card";
 import LoadingSkeleton from "../../Components/Skeleton/Skeleton";
 
-const api_key = import.meta.env.VITE_API_KEY;
+const api_key = "AIzaSyBNqHrjGMvelDRpe7sa9Vm2nSFifXNFjj8" ;
 const number_of_videos = 50;
 const youtube_api = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=${api_key}&maxResults=${number_of_videos}`;
 const channel_data_api = (channel_id: any) =>
@@ -33,7 +33,7 @@ export const Home = () => {
 
   const get_avatar_data = (video_data: any) => {
     video_data.length != 0 &&
-      video_data.map((el: any) => {
+      video_data?.map((el: any) => {
         fetch(channel_data_api(el.snippet.channelId))
           .then((res) => {
             res
@@ -73,7 +73,7 @@ export const Home = () => {
                 />
               );
             })
-          : myArray.map((el: number,index:number) => {
+          : myArray?.map((el: number,index:number) => {
               return <LoadingSkeleton key={index}/>;
             })}
       </Box>

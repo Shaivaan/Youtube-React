@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Card({ card_data, channel_data }: any) {
   const navigate = useNavigate();
   const { title, channelTitle, publishedAt } = card_data.snippet;
-  const thumbnail = card_data.snippet.thumbnails.standard.url;
+  const thumbnail = card_data.snippet.thumbnails.standard?.url;
   const { viewCount } = card_data.statistics;
   const { id } = card_data;
   const view_abbreviation_count = numeral(+viewCount)
